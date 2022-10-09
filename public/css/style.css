@@ -1,0 +1,33 @@
+.main-navbar {
+    margin-bottom: 50px;
+}
+
+p {
+    padding: 0;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+.books {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list-group-item {
+    padding: 0.3rem 0.5rem;
+}
+
+.col-4 {
+    max-width: 30%;
+}
+
+h6 {
+    font-size: 80%;
+}
+
+.image-book {
+    margin-left: 15px;
+}

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h4 class="mb-1">Новые издания</h4>
+        <p class="mb-4 text-muted">Представлены последние десять опубликованных изданий</p> 
+        <div class="books row">
+            {% for book in books %}
+            <div class="book col-4 mr-2 mb-2 list-group-item">
+                <div class="row book row align-items-center justify-content-end">
+                    <div class="col">
+                        <div class="image-book text-center">
+                            <img src="img/book-min.png" class="roundedc" data-id-book="{{book.getId()}}" alt="...">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <li class="list-group-item d-flex justify-content-start lh-sm">
+                            <div>
+                                <small class="text-muted">Название</small>
+                                <h6 class="mb-0">{{book.getTitle()}}</h6>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-start lh-sm">
+                            <div>
+                                <small class="text-muted">Автор</small>
+                                <h6 class="mb-0">Иванов Дмитрий</h6>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-start lh-sm">
+                            <div>
+                                <small class="text-muted">Жанр</small>
+                                <h6 class="mb-0">Фантастика</h6>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-start lh-sm">
+                            <div>
+                                <small class="text-muted">Дата выхода</small>
+                                <h6 class="mb-0">{{book.getDateRelease() | date('d.m.Y')}}</h6>
+
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-start lh-sm">
+                            <div>
+                                <small class="text-muted">Дата публикации</small>
+                                <h6 class="mb-0">{{(book.getDatePublished()) | date('d.m.Y H:i')}}</h6>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </div> 
+            {% endfor %}
+            {{form(form)}}         
+        </div>
+    <div>
+{% endblock %}
