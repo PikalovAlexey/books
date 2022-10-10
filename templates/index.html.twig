@@ -10,7 +10,7 @@
                 <div class="row book row align-items-center justify-content-end">
                     <div class="col">
                         <div class="image-book text-center">
-                            <img src="img/book-min.png" class="roundedc" data-id-book="{{book.getId()}}" alt="...">
+                            <img src="{{book.getImagePath}}" class="roundedc" data-id-book="{{book.getId()}}" alt="...">
                         </div>
                     </div>
                     <div class="col">
@@ -48,8 +48,7 @@
                     </div>
                 </div>
             </div> 
-            {% endfor %}
-            {{form(form)}}         
+            {% endfor %}      
         </div>
     <div>
 {% endblock %}

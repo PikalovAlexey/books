@@ -6,9 +6,19 @@ p {
     padding: 0;
 }
 
-img {
+.image-book {
     width: 100px;
-    height: 100px;
+    height: 150px;
+    margin-left: 15px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: auto;
+    height: 80px;
 }
 
 .books {
@@ -26,8 +36,4 @@ img {
 
 h6 {
     font-size: 80%;
-}
-
-.image-book {
-    margin-left: 15px;
 }

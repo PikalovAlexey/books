@@ -22,17 +22,6 @@ class Home extends AbstractController
      */
     public function index(ManagerRegistry $doctrine)
     {   
-        $book = new Book();
-        $book->setTitle('test');
-        $book->setDateRelease(new \DateTime());
-        $book->setDatePublished(new \DateTime());
-
-        $form = $this->createFormBuilder()
-            ->add('title', TextType::class)
-            ->add('date_release', DateType::class)
-            ->add('save', SubmitType::class, ['label' => 'Create Task'])
-            ->getForm();
-        
         $books = $this->getDoctrine()
             ->getRepository(Book::class)
             ->findBy(
@@ -41,12 +30,19 @@ class Home extends AbstractController
         // var_dump($books);die();
         return $this->render('index.html.twig', [
             'books' => $books,
-            'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route(path="/addNewBook", name="addNewBook")
+     * @Route(path="/addbook", name="addbook")
+     */
+    public function addbook(Request $request, BookService $bookService)
+    {   
+        return $this->render('addNewBook.html.twig');
+    }
+
+    /**
+     * @Route(path="/addNewBookAPI", name="addNewBookAPI")
      */
     public function addNewBook(Request $request, BookService $bookService, BookRepository $bookRepository)
     {   
@@ -56,7 +52,7 @@ class Home extends AbstractController
         return new JsonResponse([
             'result' => 'success',
             'bookID' => $book->getId(),
-            'title' => $book->getTitle(),
+            'bookName' => $book->getTitle(),
         ]);
     }
 }

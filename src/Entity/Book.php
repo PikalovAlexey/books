@@ -32,6 +32,11 @@ class Book
      */
     private $date_published = 'CURRENT_TIMESTAMP';
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imagePath;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Book
     public function setDatePublished(\DateTimeInterface $date_published): self
     {
         $this->date_published = $date_published;
+
+        return $this;
+    }
+
+    public function getImagePath(): ?string
+    {
+        return $this->imagePath;
+    }
+
+    public function setImagePath(?string $imagePath): self
+    {
+        $this->imagePath = $imagePath;
 
         return $this;
     }
