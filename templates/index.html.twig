@@ -10,7 +10,7 @@
                 <div class="row book row align-items-center justify-content-end">
                     <div class="col">
                         <div class="image-book text-center">
-                            <img src="{{book.getImagePath}}" class="roundedc" data-id-book="{{book.getId()}}" alt="...">
+                            <img src="{{book.getImagePath | default('img/book-min.png')}}" class="roundedc" data-id-book="{{book.getId()}}" alt="...">
                         </div>
                     </div>
                     <div class="col">
@@ -23,7 +23,7 @@
                         <li class="list-group-item d-flex justify-content-start lh-sm">
                             <div>
                                 <small class="text-muted">Автор</small>
-                                <h6 class="mb-0">Иванов Дмитрий</h6>
+                                <h6 class="mb-0">{{book.getAuthor().getName()}}</h6>
                             </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-start lh-sm">

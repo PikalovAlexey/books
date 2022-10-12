@@ -2,21 +2,22 @@
 
 namespace App\Controller;
 
+use App\Entity\Author;
 use App\Entity\Book;
+use App\Form\BookType;
 use App\Repository\BookRepository;
+use App\Service\AuthorService;
 use App\Service\BookService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController; 
 use Symfony\Component\Routing\Annotation\Route;
-
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class Home extends AbstractController 
 {   
+    // TODO: move doctrine in service
     /**
      * @Route(path="/", name="index")
      */
@@ -24,10 +25,8 @@ class Home extends AbstractController
     {   
         $books = $this->getDoctrine()
             ->getRepository(Book::class)
-            ->findBy(
-                [],
-                ['id' => 'DESC'], 10);       
-        // var_dump($books);die();
+            ->findBy([],['id' => 'DESC'], 10);
+                   
         return $this->render('index.html.twig', [
             'books' => $books,
         ]);
@@ -36,23 +35,28 @@ class Home extends AbstractController
     /**
      * @Route(path="/addbook", name="addbook")
      */
-    public function addbook(Request $request, BookService $bookService)
+    public function addbook(BookService $bookService, Request $request, BookRepository $bookRepository )
     {   
-        return $this->render('addNewBook.html.twig');
-    }
+        $form = $this->createForm(BookType::class);
 
-    /**
-     * @Route(path="/addNewBookAPI", name="addNewBookAPI")
-     */
-    public function addNewBook(Request $request, BookService $bookService, BookRepository $bookRepository)
-    {   
-        $book = $bookService->createNewBookFromRequest($request);
-        $bookRepository->add($book);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $book = $form->getData();
 
-        return new JsonResponse([
-            'result' => 'success',
-            'bookID' => $book->getId(),
-            'bookName' => $book->getTitle(),
+            if($image = $form['imagePath']->getData()) {
+                $bookName = $form['title']->getData();
+                $imagePath = $bookService->moveImage($image, $bookName);
+                $book->setImagePath($imagePath);
+            }
+
+            $book->setDatePublished(new \DateTime());
+            $bookRepository->add($book);
+            
+            return $this->redirect('/');
+        }
+
+        return $this->render('addbook.html.twig',[
+                'form' => $form->createView(),
         ]);
     }
 }
