@@ -47,6 +47,13 @@ class BookRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Books[]
+     */
+    public function getLastTenAddedBooks() {
+        return $this->findBy([],['id' => 'DESC'], 10);
+    }
+
     // /**
     //  * @return Books[] Returns an array of Books objects
     //  */

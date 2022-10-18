@@ -23,7 +23,7 @@ class BookService
             $imageName
         );
 
-        $imagePath = 'img/'.$imageName;
+        $imagePath = '/img/'.$imageName;
 
         return $imagePath;
     }
