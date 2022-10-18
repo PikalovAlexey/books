@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h4 class="mb-5">Добавить новую книгу</h4>
+        <div class="col-6">
+           {{form_start(form)}}
+                {{form_widget(form)}}
+                <button class="w-100 mt-3 btn btn-primary btn-lg" type="submit">Опубликовать книгу</button>
+           {{form_end(form)}}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+        <script src="/js/addbook.js"></script>
+{% endblock %}

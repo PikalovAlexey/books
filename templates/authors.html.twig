@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-between">
+            <div>
+                <h4 class="mb-1">Авторы и их книги</h4>
+                <p class="text-muted mb-4">Выберите автора и вам отобразятся все его публикации</p>
+            </div>
+            <div>
+                 <a class="btn btn-success" href="#">Добавить нового автора</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <ul class="list-group">
+                    {% for author in authors %}
+                     <li onclick="showBooks('{{author.getId()}}')" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">{{author.getName()}}
+                    <span class="badge bg-primary rounded-pill">{{author.getBooks()|length}}</span>
+                    </li>
+                    {% endfor %} 
+                </ul>
+             </div>
+             <div id="show-books" class="col show-books">
+                {% if books %}
+                    {% include 'showBooks.html.twig' %} 
+                {% endif %}
+             </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+        <script src="/js/showBooksByAuthor.js"></script>
+{% endblock %}
