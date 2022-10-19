@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-between">
+            <div>
+                <h4 class="mb-1">Жанры</h4>
+                <p class="text-muted mb-4">Выберите жанр из списка для сортировки книг</p>
+            </div>
+            <div>
+                 <button onclick="showForm()" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Добавить новый жанр</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <ul class="list-group">
+                    {% for genre in genres %}
+                     <li onclick="showBooks(this, '{{genre.getId()}}', 'genres')" data-genre-id="{{genre.getId()}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">{{genre.getName()}}
+                    <span class="badge bg-primary rounded-pill">{{genre.getBooks()|length}}</span>
+                    </li>
+                    {% endfor %} 
+                </ul>
+             </div>
+             <div class="col">
+                <div id="show-books" class="books show-books row">
+                {% if books %}
+                    {% include 'showBooks.html.twig' %} 
+                {% endif %}
+                </div>
+             </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Добавить нового автора</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            {{form_start(form)}}
+            <div class="modal-body">
+                
+                {{form_widget(form)}}
+                        
+            </div>
+            <div class="modal-footer">
+                <button class="w-100 mt-3 btn btn-primary btn-lg" type="submit">Добавить жанр</button>
+            </div>
+            {{form_end(form)}}
+        </div>
+</div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+        <script src="/js/showBooksByAuthor.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
