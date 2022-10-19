@@ -1,4 +1,3 @@
-<div class="books row">
 {% for book in books %}
             <div class="book mb-5 col-4 mr-2 mb-2 list-group-item">
                 <div class="row book row align-items-center justify-content-end">
@@ -23,7 +22,7 @@
                         <li class="list-group-item d-flex justify-content-start lh-sm">
                             <div>
                                 <small class="text-muted">Жанр</small>
-                                <h6 class="mb-0">Фантастика</h6>
+                                <h6 class="mb-0"><a href="{{ path('genres', {'id': book.getGenre().getId() | default('without-genre')}) }}">{{book.getGenre.getName() | default('Нет жанра') }}</a></h6>
                             </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-start lh-sm">
@@ -42,5 +41,4 @@
                     </div>
                 </div>
             </div> 
-            {% endfor %}   
-</div>
+{% endfor %}   

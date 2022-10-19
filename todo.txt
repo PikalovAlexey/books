@@ -1,2 +1,2 @@
 1. do authors uniq in DB
-2. 
+2. move code from author service to author repository

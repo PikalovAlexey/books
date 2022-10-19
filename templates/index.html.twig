@@ -4,6 +4,8 @@
     <div class="container">
         <h4 class="mb-1">Новые издания</h4>
         <p class="mb-4 text-muted">Представлены последние десять опубликованных изданий</p> 
-        {% include 'showBooks.html.twig' %} 
+        <div id="show-books" class="books show-books row">
+            {% include 'showBooks.html.twig' %} 
+        </div>
     <div>
 {% endblock %}
