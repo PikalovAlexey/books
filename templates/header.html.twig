@@ -17,8 +17,15 @@
                 <a class="nav-link" href="/addbook">Добавить новую книгу</a>
             </li>
             </ul>
-            <a class="btn btn-outline-secondary" style="margin-right: 10px;" href="#">Вход</a>
-            <a class="btn btn-outline-primary" href="#">Регистрация</a>
+            {% if app.user %}
+                <div class="mr-3" style="color: #6c757d;">
+                    Вы вошли как <span class="" style="color: white;">{{ app.user.username }}</span>
+                </div>
+                <a class="btn btn-outline-secondary" style="margin-right: 10px;" href="{{ path('app_logout') }}">Выход</a>
+            {% else %}
+                <a class="btn btn-outline-secondary" style="margin-right: 10px;" href="/login">Вход</a>
+                <a class="btn btn-outline-primary" href="/register">Регистрация</a>
+            {% endif %}
         </div>
       </div>
 </nav>
