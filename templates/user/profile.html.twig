@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h4 class="mb-1">Личный кабинет</h4>
+        <p class="mb-4 text-muted"></p> 
+        {{user.getUsername()}}
+    <div>
+{% endblock %}
