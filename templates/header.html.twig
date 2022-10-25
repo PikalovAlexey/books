@@ -18,13 +18,12 @@
             </li>
             </ul>
             {% if app.user %}
-                <div class="mr-3" style="color: #6c757d;">
-                    Вы вошли как <span class="" style="color: white;">{{ app.user.username }}</span>
-                </div>
-                <a class="btn btn-outline-secondary" style="margin-right: 10px;" href="{{ path('app_logout') }}">Выход</a>
+                
+                <a class="btn btn-outline-secondary btn-sm" style="margin-right: 10px;" href="{{ path('profile') }}">Личный кабинет</a>
+                <a class="btn btn-outline-secondary btn-sm" style="margin-right: 10px;" href="{{ path('app_logout') }}">Выход</a>
             {% else %}
-                <a class="btn btn-outline-secondary" style="margin-right: 10px;" href="/login">Вход</a>
-                <a class="btn btn-outline-primary" href="/register">Регистрация</a>
+                <a class="btn btn-outline-secondary btn-sm" style="margin-right: 10px;" href="/login">Вход</a>
+                <a class="btn btn-outline-secondary btn-sm" href="/register">Регистрация</a>
             {% endif %}
         </div>
       </div>

@@ -10,9 +10,11 @@
     <div class="row justify-content-center">
 
         {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.username) }}
+            {{ form_row(registrationForm.username, {
+                label: 'Логин'
+            }) }}
             {{ form_row(registrationForm.plainPassword, {
-                label: 'Password'
+                label: 'Пароль'
             }) }}
             {{ form_row(registrationForm.agreeTerms) }}
 

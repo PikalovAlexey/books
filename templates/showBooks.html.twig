@@ -1,6 +1,9 @@
 {% for book in books %}
             <div class="book mb-5 col-4 mr-2 mb-2 list-group-item">
-                <div class="row book row align-items-center justify-content-end">
+                {% if app.user %}
+                    <div class="star"></div>
+                {% endif %}
+                <div class="row row align-items-center justify-content-end">
                     <div class="col">
                         <div class="image-book text-center">
                             <img src="{{book.getImagePath | default('/img/book-min.png')}}" class="roundedc" data-id-book="{{book.getId()}}" alt="...">
