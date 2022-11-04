@@ -1,4 +1,6 @@
 async function addFavoriteBook(el) {
+    changeActiveElement(el)
+
     let bookId = el.getAttribute('data-id-book');
     
     var formdata = new FormData();
@@ -13,4 +15,8 @@ async function addFavoriteBook(el) {
     .then(response => response.json())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
+}
+
+function changeActiveElement(el) {
+    el.classList.toggle('active')
 }

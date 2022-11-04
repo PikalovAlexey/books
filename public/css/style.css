@@ -62,16 +62,23 @@ h6 {
     background: url('/img/star.svg');
     background-repeat: no-repeat;
     background-size: 100%;
-    position: absolute;
+    position: relative;
     top: 10px;
+    right: -35px;
     width: 25px;
     height: 25px;
-    transition: 0.3s;
+    z-index: 10;    
 }
 
 .star:hover {
+    /* background: url('/img/star-fill.svg');
+    background-repeat: no-repeat;
+    background-size: 100%; */
+    cursor: pointer;
+}
+
+.active {
     background: url('/img/star-fill.svg');
     background-repeat: no-repeat;
     background-size: 100%;
-    cursor: pointer;
 }
