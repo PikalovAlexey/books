@@ -51,6 +51,36 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function addFavoriteBook(User $entity, $book, bool $flush = true): void
+    {   
+        
+        $entity->addFavoriteBook($book);
+        $this->_em->persist($entity);
+        $this->_em->flush();
+        if ($flush) {
+            $this->_em->flush();
+        }
+    }
+
+     /**
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function removeFavoriteBook(User $entity, $book, bool $flush = true): void
+    {   
+        
+        $entity->removeFavoriteBook($book);
+        $this->_em->persist($entity);
+        $this->_em->flush();
+        if ($flush) {
+            $this->_em->flush();
+        }
+    }
+
+    /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
     public function upgradePassword(UserInterface $user, string $newHashedPassword): void

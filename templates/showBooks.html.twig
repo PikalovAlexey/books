@@ -1,12 +1,12 @@
 {% for book in books %}
             <div class="book mb-5 col-4 mr-2 mb-2 list-group-item">
                 {% if app.user %}
-                    <div class="star"></div>
+                    <div onclick="addFavoriteBook(this)" class="star" data-id-book="{{book.getId()}}"></div>
                 {% endif %}
                 <div class="row row align-items-center justify-content-end">
                     <div class="col">
                         <div class="image-book text-center">
-                            <img src="{{book.getImagePath | default('/img/book-min.png')}}" class="roundedc" data-id-book="{{book.getId()}}" alt="...">
+                            <img src="{{book.getImagePath | default('/img/book-min.png')}}" class="roundedc"  alt="...">
                         </div>
                     </div>
                     <div class="col">

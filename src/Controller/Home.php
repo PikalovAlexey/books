@@ -35,33 +35,6 @@ class Home extends AbstractController
         ]);
     }
 
-    /**
-     * @Route(path="/addbook", name="addbook")
-     */
-    public function addbook(BookService $bookService, Request $request, BookRepository $bookRepository )
-    {   
-        $form = $this->createForm(BookType::class);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $book = $form->getData();
-
-            if($image = $form['imagePath']->getData()) {
-                $bookName = $form['title']->getData();
-                $imagePath = $bookService->moveImage($image, $bookName);
-                $book->setImagePath($imagePath);
-            }
-
-            $book->setDatePublished(new \DateTime());
-            $bookRepository->add($book);
-            
-            return $this->redirect('/');
-        }
-
-        return $this->render('addbook.html.twig',[
-                'form' => $form->createView(),
-        ]);
-    }
 
     /**
      * @Route(path="/addAuthor", name="addauthor")
