@@ -18,5 +18,5 @@ async function addFavoriteBook(el) {
 }
 
 function changeActiveElement(el) {
-    el.classList.toggle('active')
+    el.classList.toggle('active-star')
 }

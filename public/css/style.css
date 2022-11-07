@@ -15,7 +15,7 @@ p {
 .image-book {
     width: 100px;
     height: 150px;
-    margin-left: 15px;
+    margin: 0 auto;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -62,13 +62,13 @@ h6 {
     background: url('/img/star.svg');
     background-repeat: no-repeat;
     background-size: 100%;
-    position: relative;
+    position: absolute;
     top: 10px;
-    right: -35px;
     width: 25px;
     height: 25px;
     z-index: 10;    
 }
+
 
 .star:hover {
     /* background: url('/img/star-fill.svg');
@@ -77,7 +77,7 @@ h6 {
     cursor: pointer;
 }
 
-.active {
+.active-star {
     background: url('/img/star-fill.svg');
     background-repeat: no-repeat;
     background-size: 100%;

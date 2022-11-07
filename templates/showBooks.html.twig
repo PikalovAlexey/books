@@ -1,4 +1,5 @@
 {% for book in books %}
+            <div class="book mb-5 col-4 mr-2 mb-2 list-group-item">
             {% if app.user %}
                 <div onclick="addFavoriteBook(this)" class="star
                     {% if  app.user.getFavoriteBooks()|length > 0 %}
@@ -6,7 +7,7 @@
                         {% for bookFavorite in app.user.getFavoriteBooks()  %}
                             {% if not break %}
                                 {% if bookFavorite == book %} 
-                                    active
+                                    active-star
                                     {% set break = true %}
                                 {% endif %}
                             {% endif %}
@@ -14,8 +15,7 @@
                     {% endif %}
                     " data-id-book="{{book.getId()}}"></div>
                     
-                {% endif %}
-            <div class="book mb-5 col-4 mr-2 mb-2 list-group-item">
+            {% endif %}
                 <div class="row row align-items-center justify-content-end">
                     <div class="col">
                         <div class="image-book text-center">

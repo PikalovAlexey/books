@@ -2,45 +2,58 @@
 
 {% block body %}
     <div class="container">
-        <h4 class="mb-1">Личный кабинет</h4>
-        <p class="mb-4 text-muted">Управление вашим аккаунтом</p> 
-        <div class="row mt-5 justify-content-start">
-            <div class="card text-bg-primary mb-3" style="width: 35%;">
-                    <div class="card-header w-100">
-                        Меню пользователя
-                         <img onclick="showFieldToChangeUsername()" src="/img/pencil.svg" class="pencil">
+        <div class="row">
+        <div class="col-4 mr-5">
+                <h4 class="mb-1">Личный кабинет</h4>
+                <p class="mb-4 text-muted">Управление вашим аккаунтом</p> 
+                <div class="row mt-5 justify-content-start">
+                    <div class="card text-bg-primary mb-3" style="width: 100%;">
+                            <div class="card-header w-100">
+                                Меню пользователя
+                                <img onclick="showFieldToChangeUsername()" src="/img/pencil.svg" class="pencil">
+                            </div>
+                            {{form_start(form)}}
+                            <div class="card-body row">
+                                <div class="col-6 text-center" style="justify-content: center; align-items: center; display: flex;">
+                                    <img src="{{user.getImagePath | default('/img/book-min.png')}}" class="roundedc" data-id-user="{{user.getId()}}" alt="...">
+                                </div>
+                                <div class="col-6">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <div class="text-muted" style="font-size: 14px;">Ваш логин:</div>
+                                            <span id="usernameField">{{user.getUsername()}}</span>
+                                            {{form_widget(form.username)}}
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="text-muted" style="font-size: 14px;">Ваше статус на сайте:</div>
+                                            {% for role in user.getRoles() %}
+                                                <li class="list-group-item">{{role}}</li>
+                                            {% endfor %}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="submit-edit-user-name" class="row w-100 d-none ">
+                                <div class="col-6 text-center mt-4">
+                                    <p>Заменить изображение</p>
+                                    {{form_widget(form.imagePath)}}
+                                </div>
+                                <div class="col-6 text-center mt-4" style="justify-content: center; align-items: center; display: flex;">
+                                    <button type="submit" class="btn btn-success btn-sm" href="">Сохранить изменения</a>
+                                </div>
+                            </div>
+                            {{form_end(form)}}
                     </div>
-                    {{form_start(form)}}
-                    <div class="card-body row">
-                        <div class="col-6 text-center" style="justify-content: center; align-items: center; display: flex;">
-                            <img src="{{user.getImagePath | default('/img/book-min.png')}}" class="roundedc" data-id-user="{{user.getId()}}" alt="...">
-                        </div>
-                        <div class="col-6">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <div class="text-muted" style="font-size: 14px;">Ваш логин:</div>
-                                    <span id="usernameField">{{user.getUsername()}}</span>
-                                    {{form_widget(form.username)}}
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="text-muted" style="font-size: 14px;">Ваше статус на сайте:</div>
-                                    {% for role in user.getRoles() %}
-                                        <li class="list-group-item">{{role}}</li>
-                                    {% endfor %}
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="submit-edit-user-name" class="row w-100 d-none ">
-                        <div class="col-6 text-center mt-4">
-                            <p>Заменить изображение</p>
-                            {{form_widget(form.imagePath)}}
-                        </div>
-                        <div class="col-6 text-center mt-4" style="justify-content: center; align-items: center; display: flex;">
-                            <button type="submit" class="btn btn-success btn-sm" href="">Сохранить изменения</a>
-                        </div>
-                    </div>
-                    {{form_end(form)}}
+                </div>
             </div>
+            </div>
+        <div class="col">
+            <h4 class="mb-1">Ваши избранные книги</h4>
+            <p class="mb-4 text-muted">Добавляйте - изменяйте</p> 
+            <div id="show-books" class="books show-books row">
+                {% include 'showBooks.html.twig' %} 
+            </div>
+        </div>
+            
         </div>
         <script src="/js/userProfile.js"></script>
 {% endblock %}

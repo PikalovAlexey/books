@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Book;
-use App\Entity\User;
 use App\Repository\BookRepository;
 use App\Repository\UserRepository;
 use App\Service\BookService;
@@ -11,7 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,6 +26,7 @@ class UserController extends AbstractController
     public function profileAction(Request $request, BookService $bookService): Response
     {   
         $user = $this->getUser();
+        $favoriteBooks = $user->getFavoriteBooks();
 
         $form = $this->createFormBuilder($user)
             ->add('username', TextType::class, [
@@ -60,6 +58,7 @@ class UserController extends AbstractController
 
         return $this->render('user/profile.html.twig', [
             'user' => $user,
+            'books' => $favoriteBooks,
             'form' => $form->createView()
         ]);
     }
